@@ -5,10 +5,8 @@
 package ch.hearc.ig.odi.minishop.restresources;
 
 import ch.hearc.ig.odi.minishop.business.Customer;
-import ch.hearc.ig.odi.minishop.business.Order;
 import ch.hearc.ig.odi.minishop.exception.CustomerException;
 import ch.hearc.ig.odi.minishop.exception.NotFoundException;
-import ch.hearc.ig.odi.minishop.exception.OrderException;
 import ch.hearc.ig.odi.minishop.services.PersistenceService;
 import java.text.ParseException;
 import java.util.List;
@@ -50,8 +48,8 @@ public class CustomerResource {
     }
 
     @POST
-    public Order customerPost(@FormParam("customerId") Long customerId) throws ParseException, OrderException {
-      return persistenceService.createOrder(customerId);
+    public Customer customerPost(@FormParam("username") String username,@FormParam("firstName") String firstName,@FormParam("lastName") String lastName,@FormParam("email") String email, @FormParam("phone") String phone  ){
+      return persistenceService.createAndPersistCustomer(username,firstName,lastName,email,phone);
     }
   }
 
