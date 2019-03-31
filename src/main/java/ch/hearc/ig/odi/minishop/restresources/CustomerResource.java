@@ -62,7 +62,7 @@ public class CustomerResource {
       return persistenceService.updateCustomer(id, customer);
     } catch (CustomerException e) {
       e.printStackTrace();
-      throw new NullFormException("customer couldn't have been updated.");
+      throw new NullFormException("customer could not be updated.");
     }
   }
 
