@@ -7,7 +7,6 @@ package ch.hearc.ig.odi.minishop.restresources;
 import ch.hearc.ig.odi.minishop.business.Customer;
 import ch.hearc.ig.odi.minishop.exception.CustomerException;
 import ch.hearc.ig.odi.minishop.exception.NotFoundException;
-import ch.hearc.ig.odi.minishop.exception.NullFormException;
 import ch.hearc.ig.odi.minishop.services.PersistenceService;
 import java.text.ParseException;
 import java.util.List;
@@ -16,7 +15,6 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -53,19 +51,6 @@ public class CustomerResource {
     public Customer customerPost(@FormParam("username") String username,@FormParam("firstName") String firstName,@FormParam("lastName") String lastName,@FormParam("email") String email, @FormParam("phone") String phone  ){
       return persistenceService.createAndPersistCustomer(username,firstName,lastName,email,phone);
     }
-
-  @PUT
-  @Path("{id}")
-  @Consumes(MediaType.APPLICATION_JSON)
-  public Customer updateCustomer(@PathParam("id") Long id, Customer customer) {
-    try {
-      return persistenceService.updateCustomer(id, customer);
-    } catch (CustomerException e) {
-      e.printStackTrace();
-      throw new NullFormException("customer couldn't have been updated.");
-    }
-  }
-
   }
 
 
